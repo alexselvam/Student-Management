@@ -148,8 +148,10 @@ const { log } = require("console");
 
 //base api
 app.get("/", (req, res) => {
-    res.status(200).json({ status: false, message: 'Your device is forbidden' });
+    res.status(200).json({ status: false, message: 'Backend Server is running successfully!' });
 });
+
+
 
 app.get("/v1/BaTalesmi", commonService.origin_middleware, async (req, res) => {
     res.json({ data: new Date().getTime() });
