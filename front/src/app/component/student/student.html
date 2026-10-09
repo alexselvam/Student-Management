@@ -1,0 +1,523 @@
+<div class="student-page">
+
+  <!-- HEADER -->
+  <app-header></app-header>
+
+
+  <!-- MAIN -->
+  <main class="student-main">
+
+
+    <!-- PAGE HEADING -->
+    <section class="page-heading">
+
+      <div>
+
+        <span class="page-label">
+          STUDENT MANAGEMENT
+        </span>
+
+        <h1>
+          Students
+        </h1>
+
+        <p>
+          Manage, search and organize all your student records.
+        </p>
+
+      </div>
+
+
+      <a routerLink="/student_add" class="add-btn">
+
+        <i class="fa-solid fa-plus"></i>
+
+        Add Student
+
+      </a>
+
+    </section>
+
+
+    <!-- STAT CARDS -->
+    <section class="student-summary">
+
+
+      <!-- TOTAL STUDENTS -->
+      <div class="summary-card">
+
+        <div class="summary-icon blue">
+
+          <i class="fa-solid fa-users"></i>
+
+        </div>
+
+        <div>
+
+          <span>
+            Total Students
+          </span>
+
+          <strong>
+            {{ students?.length }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- ACTIVE STUDENTS -->
+      <div class="summary-card">
+
+        <div class="summary-icon green">
+
+          <i class="fa-solid fa-user-check"></i>
+
+        </div>
+
+        <div>
+
+          <span>
+            Active Students
+          </span>
+
+          <strong>
+            {{ getActiveStudentsCount() }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- CLASSES -->
+      <div class="summary-card">
+
+        <div class="summary-icon purple">
+
+          <i class="fa-solid fa-school"></i>
+
+        </div>
+
+        <div>
+
+          <span>
+            Classes
+          </span>
+
+          <strong>
+            {{ getClassesCount() }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- NEW THIS MONTH -->
+      <div class="summary-card">
+
+        <div class="summary-icon orange">
+
+          <i class="fa-solid fa-user-plus"></i>
+
+        </div>
+
+        <div>
+
+          <span>
+            New This Month
+          </span>
+
+          <strong>
+            {{ getNewStudentsCount() }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STUDENT TABLE CARD -->
+    <section class="students-card">
+
+
+      <!-- CARD HEADER -->
+      <div class="students-card-header">
+
+        <div>
+
+          <h2>
+            Student List
+          </h2>
+
+          <p>
+            View and manage all registered students.
+          </p>
+
+        </div>
+
+
+        <div class="total-label">
+
+          {{ filteredStudents.length }}
+
+          Students
+
+        </div>
+
+      </div>
+
+
+      <!-- FILTERS -->
+      <div class="filters">
+
+
+        <!-- SEARCH -->
+        <div class="search-box">
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+
+          <input type="text" [(ngModel)]="searchText" (input)="searchStudent()"
+            placeholder="Search student name, ID or email">
+
+        </div>
+
+
+        <!-- CLASS -->
+        <select [(ngModel)]="selectedClass" (change)="changeClass()">
+
+          <option value="All Classes">
+            All Classes
+          </option>
+
+          <option value="Grade 6">
+            Grade 6
+          </option>
+
+          <option value="Grade 7">
+            Grade 7
+          </option>
+
+          <option value="Grade 8">
+            Grade 8
+          </option>
+
+          <option value="Grade 9">
+            Grade 9
+          </option>
+
+          <option value="Grade 10">
+            Grade 10
+          </option>
+
+          <option value="Grade 11">
+            Grade 11
+          </option>
+
+          <option value="Grade 12">
+            Grade 12
+          </option>
+
+        </select>
+
+
+        <!-- FILTER BUTTON -->
+        <button type="button" class="filter-btn" (click)="applyFilters()">
+
+          <i class="fa-solid fa-filter"></i>
+
+          Filter
+
+        </button>
+
+      </div>
+
+
+      <!-- TABLE -->
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                STUDENT
+              </th>
+
+              <th>
+                STUDENT ID
+              </th>
+
+              <th>
+                CLASS
+              </th>
+
+              <th>
+                SECTION
+              </th>
+
+              <th>
+                GENDER
+              </th>
+
+              <th>
+                ADMISSION DATE
+              </th>
+
+              <th>
+                STATUS
+              </th>
+
+              <th>
+                ACTION
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+
+            <!-- STUDENT ROWS -->
+            @for (
+            student of paginatedStudents;
+            track student._id
+            ) {
+
+            <tr>
+
+              <!-- STUDENT -->
+
+              <td>
+
+                <div class="student-info">
+
+                  <div class="student-avatar">
+                    {{ student.firstName.charAt(0).toUpperCase() }}
+                  </div>
+
+                  <div>
+
+                    <strong>
+                      {{ student.firstName }}
+                      {{ student.lastName }}
+                    </strong>
+
+                    <span>
+                      {{ student.email }}
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </td>
+
+
+              <!-- STUDENT ID -->
+
+              <td>
+                <span class="student-id">
+                  {{ student.studentId }}
+                </span>
+              </td>
+
+
+              <!-- CLASS -->
+
+              <td>
+                {{ student.className }}
+              </td>
+
+
+              <!-- SECTION -->
+
+              <td>
+                <span class="section-badge">
+                  {{ student.section }}
+                </span>
+              </td>
+
+
+              <!-- GENDER -->
+
+              <td>
+                {{ student.gender }}
+              </td>
+
+
+              <!-- ADMISSION DATE -->
+
+              <td>
+                {{ student.admissionDate | date:'dd-MM-yyyy' }}
+              </td>
+
+
+              <!-- STATUS -->
+
+              <td>
+
+                <span class="status" [class.active]="student.status === 'Active'"
+                  [class.inactive]="student.status === 'Inactive'">
+
+                  <i></i>
+
+                  {{ student.status }}
+
+                </span>
+
+              </td>
+
+
+              <!-- ACTION -->
+
+              <td>
+
+                <div class="action-buttons">
+
+                  <button type="button" class="action-btn view" title="View" (click)="viewStudent(student)">
+                    <i class="fa-regular fa-eye"></i>
+                  </button>
+
+
+                  <button type="button" class="action-btn edit" title="Edit" (click)="editStudent(student)">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </button>
+
+
+                  <button type="button" class="action-btn delete" title="Delete" (click)="deleteStudent(student)">
+                    <i class="fa-regular fa-trash-can"></i>
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+            }
+
+
+            <!-- NO DATA -->
+            @if (paginatedStudents.length === 0) {
+
+            <tr>
+
+              <td colspan="8" class="no-data">
+
+                <i class="fa-solid fa-users-slash"></i>
+
+                <strong>
+                  No students found
+                </strong>
+
+                <span>
+                  Try changing your search or filter.
+                </span>
+
+              </td>
+
+            </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <!-- PAGINATION -->
+      <div class="pagination">
+
+
+        <!-- PAGINATION INFO -->
+        <div class="pagination-info">
+
+          Showing
+
+          <strong>
+            {{ paginatedStudents.length }}
+          </strong>
+
+          of
+
+          <strong>
+            {{ filteredStudents.length }}
+          </strong>
+
+          students
+
+        </div>
+
+
+        <!-- PAGINATION BUTTONS -->
+        <div class="pagination-buttons">
+
+
+          <!-- PREVIOUS -->
+          <button type="button" class="page-arrow" [disabled]="currentPage === 1 || totalPages === 0"
+            (click)="previousPage()">
+
+            <i class="fa-solid fa-chevron-left"></i>
+
+          </button>
+
+
+          <!-- PAGE NUMBERS -->
+          @for (
+          page of pages;
+          track page
+          ) {
+
+          <button type="button" class="page-number" [class.active]="currentPage === page" (click)="goToPage(page)">
+
+            {{ page }}
+
+          </button>
+
+          }
+
+
+          <!-- NEXT -->
+          <button type="button" class="page-arrow" [disabled]="currentPage === totalPages || totalPages === 0"
+            (click)="nextPage()">
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+          </button>
+
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <app-footer></app-footer>
+
+</div>
+
+
+
+<ngx-spinner bdColor="rgba(15,23,42,0.75)" size="large" color="#2563EB" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color:#eff0f3;font-size:16px;font-weight:600;">
+    Please wait...
+  </p>
+</ngx-spinner>

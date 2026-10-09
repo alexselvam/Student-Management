@@ -1,0 +1,921 @@
+<div class="add-student-page">
+
+  <!-- HEADER -->
+
+  <app-header></app-header>
+
+
+  <!-- MAIN -->
+
+  <main class="add-student-main">
+
+    <!-- PAGE HEADING -->
+
+    <section class="page-heading">
+
+      <div>
+
+        <span class="page-label">
+          STUDENT MANAGEMENT
+        </span>
+        <h1>
+          {{
+          isViewMode
+          ? 'Student Details'
+          : isEditMode
+          ? 'Edit Student'
+          : 'Add New Student'
+          }}
+        </h1>
+
+        <p>
+          {{
+          isViewMode
+          ? 'View complete information about the student.'
+          : isEditMode
+          ? 'Update the student information and save the changes.'
+          : 'Create a new student record and add it to your school database.'
+          }}
+        </p>
+
+      </div>
+
+
+      <a routerLink="/students" class="back-btn">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back to Students
+
+      </a>
+
+    </section>
+
+
+    <!-- FORM -->
+
+    <form class="student-form" [formGroup]="studentForm" (ngSubmit)="submitStudent()">
+
+
+      <!-- ================= PERSONAL INFORMATION ================= -->
+
+      <section class="form-card">
+
+        <div class="form-card-header">
+
+          <div class="section-icon blue">
+
+            <i class="fa-solid fa-user"></i>
+
+          </div>
+
+          <div>
+
+            <h2>
+              Personal Information
+            </h2>
+
+            <p>
+              Basic information about the student.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-body">
+
+
+          <!-- NAME -->
+
+          <div class="form-grid">
+
+
+            <!-- FIRST NAME -->
+
+            <div class="form-group">
+
+              <label>
+                First Name<span>*</span>
+              </label>
+
+
+              <input type="text" formControlName="firstName" placeholder="Enter first name">
+
+
+              @if (
+              f['firstName'].invalid &&
+              f['firstName'].touched
+              ) {
+
+              <div class="error-message">
+
+                @if (f['firstName'].errors?.['required']) {
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  First name is required.
+                </span>
+
+                }
+
+                @if (f['firstName'].errors?.['minlength']) {
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  First name must be at least 2 characters.
+                </span>
+
+                }
+
+              </div>
+
+              }
+
+            </div>
+
+
+            <!-- LAST NAME -->
+
+            <div class="form-group">
+
+              <label>
+                Last Name<span>*</span>
+              </label>
+
+
+              <input type="text" formControlName="lastName" placeholder="Enter last name">
+
+
+              @if (
+              f['lastName'].invalid &&
+              f['lastName'].touched
+              ) {
+
+              <div class="error-message">
+
+                @if (f['lastName'].errors?.['required']) {
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Last name is required.
+                </span>
+
+                }
+
+                @if (f['lastName'].errors?.['minlength']) {
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Last name must be at least 2 characters.
+                </span>
+
+                }
+
+              </div>
+
+              }
+
+            </div>
+
+          </div>
+
+
+          <!-- EMAIL PHONE -->
+
+          <div class="form-grid">
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+              <label>
+                Email Address
+              </label>
+
+
+              <div class="input-icon">
+
+                <i class="fa-regular fa-envelope"></i>
+
+                <input type="email" formControlName="email" placeholder="student@example.com">
+
+              </div>
+
+
+              @if (
+              f['email'].invalid &&
+              f['email'].touched
+              ) {
+
+              <div class="error-message">
+
+                @if (f['email'].errors?.['email']) {
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Please enter a valid email address.
+                </span>
+
+                }
+
+              </div>
+
+              }
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+              <label>
+                Phone Number
+              </label>
+
+              <div class="input-icon">
+
+                <i class="fa-solid fa-phone"></i>
+
+                <input type="tel" formControlName="phone" placeholder="Enter 10 digit phone number" maxlength="10">
+
+              </div>
+
+              @if (
+              f['phone'].invalid &&
+              (f['phone'].touched || submitted)
+              ) {
+
+              <div class="error-message">
+
+                @if (f['phone'].errors?.['pattern']) {
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Please enter a valid 10-digit phone number.
+                </span>
+
+                }
+
+              </div>
+
+              }
+
+            </div>
+
+          </div>
+
+
+          <!-- DOB GENDER -->
+
+          <!-- DOB GENDER STATUS -->
+
+          <div class="form-grid">
+
+            <!-- DOB -->
+
+            <div class="form-group">
+
+              <label>
+                Date of Birth
+              </label>
+
+              <input type="date" formControlName="dob" [max]="maxDate">
+
+              @if (f['dob'].invalid && (f['dob'].touched || submitted)) {
+
+              <div class="error-message">
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Please select a valid date of birth.
+                </span>
+
+              </div>
+
+              }
+
+            </div>
+
+
+            <!-- GENDER -->
+
+            <div class="form-group">
+
+              <label>
+                Gender
+              </label>
+
+              <select formControlName="gender">
+
+                <option value="">
+                  Select gender
+                </option>
+
+                <option value="Male">
+                  Male
+                </option>
+
+                <option value="Female">
+                  Female
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
+
+              </select>
+
+              @if (
+              f['gender'].invalid &&
+              (f['gender'].touched || submitted)
+              ) {
+
+              <div class="error-message">
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Please select gender.
+                </span>
+
+              </div>
+
+              }
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="form-group">
+
+              <label>
+                Status<span>*</span>
+              </label>
+
+              <select formControlName="status">
+
+                <option value="Active">
+                  Active
+                </option>
+
+                <option value="Inactive">
+                  Inactive
+                </option>
+
+              </select>
+
+              @if (
+              f['status'].invalid &&
+              (f['status'].touched || submitted)
+              ) {
+
+              <div class="error-message">
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Please select student status.
+                </span>
+
+              </div>
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= ACADEMIC INFORMATION ================= -->
+
+      <section class="form-card">
+
+        <div class="form-card-header">
+
+          <div class="section-icon purple">
+
+            <i class="fa-solid fa-graduation-cap"></i>
+
+          </div>
+
+          <div>
+
+            <h2>
+              Academic Information
+            </h2>
+
+            <p>
+              Student class and admission details.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-body">
+
+
+          <!-- STUDENT ID + CLASS -->
+
+          <div class="form-grid">
+
+            <!-- STUDENT ID -->
+
+            <div class="form-group">
+
+              <label>
+                Student ID / Roll Number<span>*</span>
+              </label>
+
+              <input type="text" formControlName="studentId" placeholder="Example: ST001">
+
+              @if (f['studentId'].invalid && (f['studentId'].touched || submitted)) {
+
+              <div class="error-message">
+
+                @if (f['studentId'].errors?.['required']) {
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Student ID / Roll Number is required.
+                </span>
+                }
+
+                @if (f['studentId'].errors?.['maxlength']) {
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Student ID cannot exceed 20 characters.
+                </span>
+                }
+
+              </div>
+
+              }
+
+            </div>
+
+
+            <!-- CLASS -->
+
+            <div class="form-group">
+
+              <label>
+                Class<span>*</span>
+              </label>
+
+              <select formControlName="className">
+
+                <option value="">
+                  Select class
+                </option>
+
+                <option value="Grade 6">Grade 6</option>
+                <option value="Grade 7">Grade 7</option>
+                <option value="Grade 8">Grade 8</option>
+                <option value="Grade 9">Grade 9</option>
+                <option value="Grade 10">Grade 10</option>
+                <option value="Grade 11">Grade 11</option>
+                <option value="Grade 12">Grade 12</option>
+
+              </select>
+
+              @if (f['className'].invalid && (f['className'].touched || submitted)) {
+
+              <div class="error-message">
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Please select a class.
+                </span>
+
+              </div>
+
+              }
+
+            </div>
+
+          </div>
+
+
+          <!-- SECTION + ADMISSION DATE -->
+          <div class="form-grid">
+
+            <!-- SECTION -->
+
+            <div class="form-group">
+
+              <label>
+                Section<span>*</span>
+              </label>
+
+              <select formControlName="section">
+
+                <option value="">
+                  Select section
+                </option>
+
+                <option value="A">Section A</option>
+                <option value="B">Section B</option>
+                <option value="C">Section C</option>
+                <option value="D">Section D</option>
+
+              </select>
+
+              @if (f['section'].invalid && (f['section'].touched || submitted)) {
+
+              <div class="error-message">
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Please select a section.
+                </span>
+
+              </div>
+
+              }
+
+            </div>
+
+
+            <!-- ADMISSION DATE -->
+
+            <div class="form-group">
+
+              <label>
+                Admission Date
+              </label>
+
+              <input type="date" formControlName="admissionDate">
+
+              @if (f['admissionDate'].invalid && (f['admissionDate'].touched || submitted)) {
+
+              <div class="error-message">
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Please select a valid admission date.
+                </span>
+
+              </div>
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= PARENT INFORMATION ================= -->
+
+      <section class="form-card">
+
+        <div class="form-card-header">
+
+          <div class="section-icon green">
+
+            <i class="fa-solid fa-people-roof"></i>
+
+          </div>
+
+          <div>
+
+            <h2>
+              Parent / Guardian Information
+            </h2>
+
+            <p>
+              Contact information of the student's parent or guardian.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-body">
+
+          <div class="form-grid">
+
+            <!-- PARENT NAME -->
+
+            <div class="form-group">
+
+              <label>
+                Parent / Guardian Name
+              </label>
+
+              <input type="text" formControlName="parentName" placeholder="Enter parent name">
+
+              @if (f['parentName'].invalid && (f['parentName'].touched || submitted)) {
+
+              <div class="error-message">
+
+                @if (f['parentName'].errors?.['minlength']) {
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Parent name must be at least 2 characters.
+                </span>
+                }
+
+                @if (f['parentName'].errors?.['maxlength']) {
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Parent name cannot exceed 50 characters.
+                </span>
+                }
+
+              </div>
+
+              }
+
+            </div>
+
+
+            <!-- PARENT PHONE -->
+
+            <div class="form-group">
+
+              <label>
+                Parent Phone Number
+              </label>
+
+              <div class="input-icon">
+
+                <i class="fa-solid fa-phone"></i>
+
+                <input type="tel" formControlName="parentPhone" placeholder="+91 XXXXX XXXXX">
+
+              </div>
+
+              @if (f['parentPhone'].invalid && (f['parentPhone'].touched || submitted)) {
+
+              <div class="error-message">
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Please enter a valid parent phone number.
+                </span>
+
+              </div>
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= ADDRESS ================= -->
+
+      <section class="form-card">
+
+        <div class="form-card-header">
+
+          <div class="section-icon orange">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+          </div>
+
+          <div>
+
+            <h2>
+              Address Information
+            </h2>
+
+            <p>
+              Student's residential address.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-body">
+
+
+          <!-- ADDRESS -->
+
+          <div class="form-group">
+
+            <label>
+              Address
+            </label>
+
+            <textarea formControlName="address" placeholder="Enter complete address" rows="4">
+  </textarea>
+
+            @if (f['address'].invalid && (f['address'].touched || submitted)) {
+
+            <div class="error-message">
+
+              @if (f['address'].errors?.['minlength']) {
+              <span>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Address must be at least 5 characters.
+              </span>
+              }
+
+              @if (f['address'].errors?.['maxlength']) {
+              <span>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Address cannot exceed 250 characters.
+              </span>
+              }
+
+            </div>
+
+            }
+
+          </div>
+
+
+          <!-- CITY STATE COUNTRY -->
+
+          <div class="form-grid three">
+
+            <!-- CITY -->
+
+            <div class="form-group">
+
+              <label>
+                City
+              </label>
+
+              <input type="text" formControlName="city" placeholder="Enter city">
+
+              @if (f['city'].invalid && (f['city'].touched || submitted)) {
+
+              <div class="error-message">
+
+                @if (f['city'].errors?.['minlength']) {
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  City must be at least 2 characters.
+                </span>
+                }
+
+                @if (f['city'].errors?.['maxlength']) {
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  City cannot exceed 50 characters.
+                </span>
+                }
+
+              </div>
+
+              }
+
+            </div>
+
+
+            <!-- STATE -->
+
+            <div class="form-group">
+
+              <label>
+                State
+              </label>
+
+              <input type="text" formControlName="state" placeholder="Enter state">
+
+              @if (f['state'].invalid && (f['state'].touched || submitted)) {
+
+              <div class="error-message">
+
+                @if (f['state'].errors?.['minlength']) {
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  State must be at least 2 characters.
+                </span>
+                }
+
+                @if (f['state'].errors?.['maxlength']) {
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  State cannot exceed 50 characters.
+                </span>
+                }
+
+              </div>
+
+              }
+
+            </div>
+
+
+            <!-- COUNTRY -->
+
+            <div class="form-group">
+
+              <label>
+                Country
+              </label>
+
+              <input type="text" formControlName="country" placeholder="Enter country">
+
+              @if (
+              f['country'].invalid &&
+              (f['country'].touched || submitted)
+              ) {
+
+              <div class="error-message">
+
+                @if (f['country'].errors?.['required']) {
+
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  Country is required.
+                </span>
+
+                }
+
+              </div>
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= FORM ACTIONS ================= -->
+
+      <div class="form-actions">
+
+
+        <button type="button" class="cancel-btn" (click)="cancelForm()">
+
+          Cancel
+
+        </button>
+
+        @if (!isViewMode) {
+
+        <button type="submit" class="save-btn">
+
+          <i class="fa-solid" [ngClass]="
+        isEditMode
+          ? 'fa-pen-to-square'
+          : 'fa-check'
+      ">
+          </i>
+
+          {{ isEditMode ? 'Update Student' : 'Add Student' }}
+
+        </button>
+
+        }
+        @if (isViewMode) {
+
+        <button type="button" class="save-btn" (click)="goToEdit()">
+
+          <i class="fa-solid fa-pen-to-square"></i>
+
+          Edit Student
+
+        </button>
+
+        }
+
+      </div>
+
+    </form>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <app-footer></app-footer>
+
+</div>
+
+
+
+<ngx-spinner bdColor="rgba(15,23,42,0.75)" size="large" color="#2563EB" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color:#eff0f3;font-size:16px;font-weight:600;">
+    Please wait...
+  </p>
+</ngx-spinner>

@@ -1,0 +1,380 @@
+<div class="login-page">
+
+  <!-- Background Decoration -->
+
+  <div class="bg-circle circle-one"></div>
+  <div class="bg-circle circle-two"></div>
+
+
+  <!-- Header -->
+
+  <header class="login-header">
+
+    <a routerLink="/" class="logo">
+
+      <span class="logo-icon">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </span>
+
+      <span class="logo-text">
+        Student<span>Hub</span>
+      </span>
+
+    </a>
+
+
+    <a routerLink="/" class="back-home">
+
+      <i class="fa-solid fa-arrow-left"></i>
+
+      Back to Home
+
+    </a>
+
+  </header>
+
+
+  <!-- Main -->
+
+  <main class="login-main">
+
+    <div class="login-wrapper">
+
+
+      <!-- LEFT SIDE -->
+
+      <section class="login-info">
+
+        <span class="info-label">
+
+          <i class="fa-solid fa-lock"></i>
+
+          SECURE LOGIN
+
+        </span>
+
+
+        <h1>
+
+          Welcome
+          <span>Back.</span>
+
+        </h1>
+
+
+        <p>
+
+          Sign in to your StudentHub account and
+          continue managing your student records
+          with ease.
+
+        </p>
+
+
+        <!-- Features -->
+
+        <div class="login-features">
+
+          <div class="feature-item">
+
+            <div class="feature-icon blue">
+
+              <i class="fa-solid fa-users"></i>
+
+            </div>
+
+            <div>
+
+              <strong>
+                Manage Students
+              </strong>
+
+              <span>
+                Keep student information organized.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="feature-item">
+
+            <div class="feature-icon green">
+
+              <i class="fa-solid fa-shield-halved"></i>
+
+            </div>
+
+            <div>
+
+              <strong>
+                Secure Access
+              </strong>
+
+              <span>
+                Your account remains protected.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="feature-item">
+
+            <div class="feature-icon purple">
+
+              <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+            <div>
+
+              <strong>
+                Simple Dashboard
+              </strong>
+
+              <span>
+                Access everything from one place.
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Quote -->
+
+        <div class="login-quote">
+
+          <i class="fa-solid fa-quote-left"></i>
+
+          <p>
+            Simple tools. Organized students.
+            Better management.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- LOGIN CARD -->
+
+      <section class="login-card">
+
+
+        <!-- Card Heading -->
+
+        <div class="card-heading">
+
+          <div class="card-icon">
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+          </div>
+
+          <div>
+
+            <h2>
+              Welcome Back
+            </h2>
+
+            <p>
+              Login to your StudentHub account.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Form -->
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+
+          <!-- EMAIL -->
+
+          <div class="form-group">
+
+            <label for="email">
+              Email Address
+            </label>
+
+
+            <div class="input-wrapper" [class.error]="
+                f['email'].touched &&
+                f['email'].invalid
+              ">
+
+              <i class="fa-regular fa-envelope input-icon">
+              </i>
+
+
+              <input id="email" type="email" formControlName="email" placeholder="Enter your email"
+                autocomplete="email">
+
+            </div>
+
+
+            @if (
+            f['email'].touched &&
+            f['email'].errors?.['required']
+            ) {
+
+            <small class="error-text">
+              Email address is required.
+            </small>
+
+            }
+
+
+            @if (
+            f['email'].touched &&
+            f['email'].errors?.['email']
+            ) {
+
+            <small class="error-text">
+              Please enter a valid email address.
+            </small>
+
+            }
+
+          </div>
+
+
+          <!-- PASSWORD -->
+
+          <div class="form-group">
+
+            <div class="label-row">
+
+              <label for="password">
+                Password
+              </label>
+
+
+              <a routerLink="/forgot-password" class="forgot-link">
+
+                Forgot Password?
+
+              </a>
+
+            </div>
+
+
+            <div class="input-wrapper" [class.error]="
+                f['password'].touched &&
+                f['password'].invalid
+              ">
+
+              <i class="fa-solid fa-lock input-icon">
+              </i>
+
+
+              <input id="password" [type]="
+                  showPassword
+                    ? 'text'
+                    : 'password'
+                " formControlName="password" placeholder="Enter your password" autocomplete="current-password">
+
+
+              <button type="button" class="password-toggle" (click)="togglePassword()">
+
+                <i class="fa-solid" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword">
+                </i>
+
+              </button>
+
+            </div>
+
+
+            @if (
+            f['password'].touched &&
+            f['password'].errors?.['required']
+            ) {
+
+            <small class="error-text">
+              Password is required.
+            </small>
+
+            }
+
+
+            @if (
+            f['password'].touched &&
+            f['password'].errors?.['minlength']
+            ) {
+
+            <small class="error-text">
+              Password must contain at least 6 characters.
+            </small>
+
+            }
+
+          </div>
+
+
+
+          <!-- LOGIN BUTTON -->
+
+          <button type="submit" class="login-submit">
+
+            <span>
+              Login to Account
+            </span>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </button>
+
+
+          <!-- REGISTER -->
+
+          <div class="register-link">
+
+            Don't have an account?
+
+            <a routerLink="/register">
+              Create Account
+            </a>
+
+          </div>
+
+
+        </form>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- Footer -->
+
+  <footer class="login-footer">
+
+    <span>
+      © 2026 StudentHub. All rights reserved.
+    </span>
+
+    <span>
+      Student Management Platform
+    </span>
+
+  </footer>
+
+</div>
+
+
+<ngx-spinner bdColor="rgba(15,23,42,0.75)" size="large" color="#2563EB" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color:#eff0f3;font-size:16px;font-weight:600;">
+    Please wait...
+  </p>
+</ngx-spinner>

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+
+  --body-bg: #f1f5f9;
+  --section-bg: #f8fafc;
+  --card-bg: #ffffff;
+
+  --heading: #0f172a;
+  --text: #475569;
+  --muted: #64748b;
+
+  --border: #e2e8f0;
+
+  --success: #16a34a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(37, 99, 235, 0.06),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(99, 102, 241, 0.05),
+      transparent 28%
+    ),
+    #f5f7fb;
+
+  color: #334155;
+
+  font-family: 'DM Sans', sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+
+  font-family: 'Plus Jakarta Sans', sans-serif;
+
+  color: var(--heading);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+
+
+

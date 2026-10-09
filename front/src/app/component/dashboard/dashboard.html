@@ -1,0 +1,559 @@
+<div class="dashboard-page">
+
+  <!-- ================= HEADER ================= -->
+
+  <app-header></app-header>
+
+
+  <!-- ================= DASHBOARD ================= -->
+
+  <main class="dashboard-main">
+
+    <!-- Dashboard Heading -->
+
+    <section class="dashboard-heading">
+
+      <div>
+
+        <span class="welcome-label">
+          STUDENT MANAGEMENT
+        </span>
+
+        <h1 class="welcome-small">
+          {{ getGreeting() }} Alex
+        </h1>
+
+        <p>
+          Here's what's happening with your students today.
+        </p>
+
+      </div>
+
+
+      <div class="heading-actions">
+
+        <a routerLink="/students" class="outline-btn">
+
+          <i class="fa-solid fa-users"></i>
+
+          View Students
+
+        </a>
+
+
+        <a routerLink="/student_add" class="primary-btn">
+
+          <i class="fa-solid fa-plus"></i>
+
+          Add Student
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= STAT CARDS ================= -->
+
+    <section class="stats-grid">
+
+      @for (stat of stats; track stat.title) {
+
+      <div class="stat-card">
+
+        <div class="stat-top">
+
+          <div class="stat-icon" [ngClass]="stat.type">
+
+            <i class="fa-solid" [ngClass]="stat.icon">
+            </i>
+
+          </div>
+
+          @if (stat.change) {
+
+          <span class="stat-change">
+            {{ stat.change }}
+          </span>
+
+          }
+
+        </div>
+
+
+        <div class="stat-value">
+          {{ stat.value }}
+        </div>
+
+
+        <div class="stat-title">
+          {{ stat.title }}
+        </div>
+
+
+        <p>
+          Current statistics
+        </p>
+
+      </div>
+
+      }
+
+    </section>
+
+
+    <!-- ================= MAIN REPORT AREA ================= -->
+
+    <section class="dashboard-grid">
+
+
+      <!-- CLASS OVERVIEW -->
+
+      <div class="dashboard-card class-overview">
+
+        <div class="card-header">
+
+          <div>
+
+            <h2>
+              Student Overview
+            </h2>
+
+            <p>
+              Number of students by class
+            </p>
+
+          </div>
+
+
+          <a routerLink="/reports" class="view-link">
+
+            View Report
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </a>
+
+        </div>
+
+
+        <div class="class-list">
+
+          @for (item of classData; track item.name) {
+
+          <div class="class-row">
+
+            <div class="class-row-info">
+
+              <span>
+                {{ item.name }}
+              </span>
+
+              <strong>
+                {{ item.students }}
+              </strong>
+
+            </div>
+
+
+            <div class="progress">
+
+              <div class="progress-value" [style.width.%]="item.percentage">
+              </div>
+
+            </div>
+
+          </div>
+
+          }
+
+          @if (classData.length === 0) {
+
+          <div class="empty-state">
+            No student data available.
+          </div>
+
+          }
+
+        </div>
+
+      </div>
+
+
+      <!-- GENDER CARD -->
+
+      <div class="dashboard-card gender-card">
+
+        <div class="card-header">
+
+          <div>
+
+            <h2>
+              Gender Distribution
+            </h2>
+
+            <p>
+              Overall student statistics
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="gender-content">
+
+          <div class="donut-chart">
+
+            <div class="donut-center">
+
+              <strong>
+                {{ totalStudents }}
+              </strong>
+
+              <span>
+                Students
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="gender-info">
+
+            <div class="gender-line">
+
+              <span>
+
+                <i class="male"></i>
+
+                Male
+
+              </span>
+
+              <strong>
+                {{ maleStudents }}
+              </strong>
+
+            </div>
+
+
+            <div class="gender-line">
+
+              <span>
+
+                <i class="female"></i>
+
+                Female
+
+              </span>
+
+              <strong>
+                {{ femaleStudents }}
+              </strong>
+
+            </div>
+
+
+            @if (otherStudents > 0) {
+
+            <div class="gender-line">
+
+              <span>
+
+                <i class="other"></i>
+
+                Other
+
+              </span>
+
+              <strong>
+                {{ otherStudents }}
+              </strong>
+
+            </div>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= RECENT STUDENTS ================= -->
+
+    <section class="recent-section">
+
+      <div class="dashboard-card">
+
+        <div class="card-header">
+
+          <div>
+
+            <h2>
+              Recent Students
+            </h2>
+
+            <p>
+              Recently added student records
+            </p>
+
+          </div>
+
+
+          <a routerLink="/students" class="view-link">
+
+            View All
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </a>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  STUDENT
+                </th>
+
+                <th>
+                  STUDENT ID
+                </th>
+
+                <th>
+                  CLASS
+                </th>
+
+                <th>
+                  SECTION
+                </th>
+
+                <th>
+                  DATE
+                </th>
+
+                <th>
+                  STATUS
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              @for (
+              student of recentStudents;
+              track student.id
+              ) {
+
+              <tr>
+
+                <td>
+
+                  <div class="student-info">
+
+                    <div class="student-avatar">
+
+                      {{ student.name?.charAt(0)?.toUpperCase() }}
+
+                    </div>
+
+                    <strong>
+                      {{ student.name }}
+                    </strong>
+
+                  </div>
+
+                </td>
+
+
+                <td>
+                  {{ student.id }}
+                </td>
+
+
+                <td>
+                  {{ student.className }}
+                </td>
+
+
+                <td>
+                  {{ student.section }}
+                </td>
+
+
+                <td>
+                  {{ formatDate(student.date) }}
+                </td>
+
+
+                <td>
+
+                  <span class="status" [class.active]="student.status === 'Active'"
+                    [class.inactive]="student.status === 'Inactive'">
+
+                    <i></i>
+
+                    {{ student.status }}
+
+                  </span>
+
+                </td>
+
+              </tr>
+
+              }
+
+
+              @if (recentStudents.length === 0) {
+
+              <tr>
+
+                <td colspan="6" class="empty-table">
+
+                  No students found.
+
+                </td>
+
+              </tr>
+
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= QUICK ACTIONS ================= -->
+
+    <section class="quick-section">
+
+      <div class="section-title">
+
+        <div>
+
+          <span>
+            QUICK ACTIONS
+          </span>
+
+          <h2>
+            Manage Students
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="quick-grid">
+
+
+        <a routerLink="/student_add" class="quick-card">
+
+          <div class="quick-icon blue">
+
+            <i class="fa-solid fa-user-plus"></i>
+
+          </div>
+
+          <div>
+
+            <h3>
+              Add Student
+            </h3>
+
+            <p>
+              Create a new student record
+            </p>
+
+          </div>
+
+          <i class="fa-solid fa-arrow-right arrow"></i>
+
+        </a>
+
+
+        <a routerLink="/students" class="quick-card">
+
+          <div class="quick-icon green">
+
+            <i class="fa-solid fa-users"></i>
+
+          </div>
+
+          <div>
+
+            <h3>
+              Student List
+            </h3>
+
+            <p>
+              View and manage all students
+            </p>
+
+          </div>
+
+          <i class="fa-solid fa-arrow-right arrow"></i>
+
+        </a>
+
+
+        <a routerLink="/reports" class="quick-card">
+
+          <div class="quick-icon purple">
+
+            <i class="fa-solid fa-chart-simple"></i>
+
+          </div>
+
+          <div>
+
+            <h3>
+              Reports
+            </h3>
+
+            <p>
+              View student statistics
+            </p>
+
+          </div>
+
+          <i class="fa-solid fa-arrow-right arrow"></i>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <app-footer></app-footer>
+
+</div>

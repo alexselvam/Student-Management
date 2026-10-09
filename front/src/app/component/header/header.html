@@ -1,0 +1,300 @@
+<header class="main-header">
+
+  <div class="header-container">
+
+    <!-- ================= LOGO ================= -->
+
+    <a routerLink="/" class="logo" (click)="closeMenu()">
+
+      <span class="logo-icon">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </span>
+
+      <span class="logo-text">
+        Student<span>Hub</span>
+      </span>
+
+    </a>
+
+
+    <!-- ================= DESKTOP NAVIGATION ================= -->
+
+    <nav class="nav-menu">
+
+      <!-- Public Menu -->
+
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+
+        Home
+
+      </a>
+      @if (!islogin) {
+
+      <a routerLink="/features" routerLinkActive="active" class="nav-link">
+
+        Features
+
+      </a>
+
+
+      <a routerLink="/how-it-works" routerLinkActive="active" class="nav-link">
+
+        How It Works
+
+      </a>
+
+
+      <a routerLink="/about" routerLinkActive="active" class="nav-link">
+
+        About
+
+      </a>
+      }
+
+      <!-- Logged In Menu -->
+
+      @if (islogin) {
+
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+
+        Dashboard
+
+      </a>
+
+
+      <a routerLink="/students" routerLinkActive="active" class="nav-link">
+
+        Students
+
+      </a>
+
+
+      <a routerLink="/student_add" routerLinkActive="active" class="nav-link">
+
+        Add Student
+
+      </a>
+
+
+      <a routerLink="/reports" routerLinkActive="active" class="nav-link">
+
+        Reports
+
+      </a>
+
+      }
+
+    </nav>
+
+
+    <!-- ================= HEADER ACTIONS ================= -->
+
+    @if (!islogin) {
+
+    <div class="header-actions">
+
+      <a routerLink="/login" routerLinkActive="active" class="login-btn">
+
+        Login
+
+      </a>
+
+
+      <a routerLink="/register" routerLinkActive="active" class="register-btn">
+
+        Register
+
+      </a>
+
+    </div>
+
+    } @else {
+
+    <div class="header-actions">
+
+      <a type="button" class="logout-btn" (click)="logout()" style="cursor: pointer;">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Logout
+
+      </a>
+
+    </div>
+
+    }
+
+
+    <!-- ================= MOBILE MENU BUTTON ================= -->
+
+    <button class="menu-btn" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen"
+      aria-label="Toggle menu">
+
+      <i class="fa-solid" [ngClass]="isMenuOpen ? 'fa-xmark' : 'fa-bars'">
+      </i>
+
+    </button>
+
+  </div>
+
+
+  <!-- ================= MOBILE NAVIGATION ================= -->
+
+  <div class="mobile-menu" [class.show]="isMenuOpen">
+
+    <nav class="mobile-nav">
+
+
+      <!-- Home -->
+
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>
+          Home
+        </span>
+
+      </a>
+
+      @if(!islogin){
+      <!-- Features -->
+
+      <a routerLink="/features" routerLinkActive="active" (click)="closeMenu()">
+
+        <i class="fa-solid fa-layer-group"></i>
+
+        <span>
+          Features
+        </span>
+
+      </a>
+
+
+      <!-- How It Works -->
+
+      <a routerLink="/how-it-works" routerLinkActive="active" (click)="closeMenu()">
+
+        <i class="fa-solid fa-list-check"></i>
+
+        <span>
+          How It Works
+        </span>
+
+      </a>
+
+
+      <!-- About -->
+
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <span>
+          About
+        </span>
+
+      </a>
+      }
+
+
+      <!-- ================= NOT LOGGED IN ================= -->
+
+      @if (!islogin) {
+
+      <div class="mobile-actions">
+
+        <a routerLink="/login" routerLinkActive="active" class="mobile-login" (click)="closeMenu()">
+
+          Login
+
+        </a>
+
+
+        <a routerLink="/register" routerLinkActive="active" class="mobile-register" (click)="closeMenu()">
+
+          Register
+
+        </a>
+
+      </div>
+
+      }
+
+
+      <!-- ================= LOGGED IN ================= -->
+
+      @else {
+
+
+      <!-- Dashboard -->
+
+      <a routerLink="/dashboard" routerLinkActive="active" (click)="closeMenu()">
+
+        <i class="fa-solid fa-gauge-high"></i>
+
+        <span>
+          Dashboard
+        </span>
+
+      </a>
+
+
+      <!-- Students -->
+
+      <a routerLink="/students" routerLinkActive="active" (click)="closeMenu()">
+
+        <i class="fa-solid fa-users"></i>
+
+        <span>
+          Students
+        </span>
+
+      </a>
+
+
+      <!-- Add Student -->
+
+      <a routerLink="/student_add" routerLinkActive="active" (click)="closeMenu()">
+
+        <i class="fa-solid fa-user-plus"></i>
+
+        <span>
+          Add Student
+        </span>
+
+      </a>
+
+
+      <!-- Reports -->
+
+      <a routerLink="/reports" routerLinkActive="active" (click)="closeMenu()">
+
+        <i class="fa-solid fa-chart-simple"></i>
+
+        <span>
+          Reports
+        </span>
+
+      </a>
+
+
+      <!-- Logout -->
+
+      <a type="button" class="mobile-logout" (click)="logout(); closeMenu()" style="cursor: pointer;">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        <span>
+          Logout
+        </span>
+
+      </a>
+
+      }
+
+    </nav>
+
+  </div>
+
+</header>

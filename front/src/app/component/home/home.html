@@ -1,0 +1,530 @@
+<app-header></app-header>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+
+  <section class="hero-section">
+
+    <div class="hero-container">
+
+      <!-- Hero Content -->
+
+      <div class="hero-content">
+
+        <span class="hero-badge">
+          <i class="fa-solid fa-sparkles"></i>
+          Simple Student Management
+        </span>
+
+        <h1>
+          Manage Your Students.
+          <span>Simple. Fast. Organized.</span>
+        </h1>
+
+        <p>
+          A modern and simple platform to manage student records,
+          search information, update details and keep everything
+          organized in one place.
+        </p>
+
+        @if (islogin) {
+        <div class="hero-buttons">
+
+          <a routerLink="/dashboard" class="primary-btn">
+
+            Get Started
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </a>
+
+        </div>
+        }
+        @else {
+        <div class="hero-buttons">
+
+          <a routerLink="/register" class="primary-btn">
+
+            Get Started
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </a>
+
+          <a routerLink="/login" class="secondary-btn">
+
+            Login
+
+          </a>
+
+        </div>
+        }
+
+
+        <div class="hero-trust">
+
+          <div class="trust-item">
+            <i class="fa-solid fa-circle-check"></i>
+            Easy to use
+          </div>
+
+          <div class="trust-item">
+            <i class="fa-solid fa-circle-check"></i>
+            Fast search
+          </div>
+
+          <div class="trust-item">
+            <i class="fa-solid fa-circle-check"></i>
+            Secure access
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Hero Visual -->
+
+      <div class="hero-visual">
+
+        <div class="dashboard-preview">
+
+          <div class="preview-header">
+
+            <div>
+              <span class="preview-small">
+                Student Management
+              </span>
+
+              <h3>Dashboard</h3>
+            </div>
+
+            <div class="preview-profile">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+          </div>
+
+
+          <!-- Stats -->
+
+          <div class="preview-stats">
+
+            <div class="preview-card">
+
+              <div class="preview-icon blue">
+                <i class="fa-solid fa-users"></i>
+              </div>
+
+              <div>
+                <span>Total Students</span>
+                <strong>120</strong>
+              </div>
+
+            </div>
+
+            <div class="preview-card">
+
+              <div class="preview-icon green">
+                <i class="fa-solid fa-user-plus"></i>
+              </div>
+
+              <div>
+                <span>Added Today</span>
+                <strong>12</strong>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Student Table -->
+
+          <div class="preview-table">
+
+            <div class="table-title">
+              <span>Recent Students</span>
+
+              <span class="view-all">
+                View All
+              </span>
+            </div>
+
+            <div class="student-row">
+
+              <div class="student-avatar">
+                A
+              </div>
+
+              <div class="student-info">
+                <strong>Alex Smith</strong>
+                <span>BCA</span>
+              </div>
+
+              <span class="student-status">
+                Active
+              </span>
+
+            </div>
+
+            <div class="student-row">
+
+              <div class="student-avatar purple">
+                P
+              </div>
+
+              <div class="student-info">
+                <strong>Priya Kumar</strong>
+                <span>B.Sc</span>
+              </div>
+
+              <span class="student-status">
+                Active
+              </span>
+
+            </div>
+
+            <div class="student-row">
+
+              <div class="student-avatar orange">
+                J
+              </div>
+
+              <div class="student-info">
+                <strong>John David</strong>
+                <span>B.Com</span>
+              </div>
+
+              <span class="student-status">
+                Active
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Floating Card -->
+
+        <div class="floating-card floating-top">
+
+          <div class="floating-icon">
+            <i class="fa-solid fa-user-check"></i>
+          </div>
+
+          <div>
+            <strong>Student Added</strong>
+            <span>Successfully</span>
+          </div>
+
+        </div>
+
+        <div class="floating-card floating-bottom">
+
+          <div class="floating-icon search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+
+          <div>
+            <strong>Quick Search</strong>
+            <span>Find students instantly</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= STATS ================= -->
+
+  <section class="stats-section">
+
+    <div class="stats-container">
+
+      <div class="stat-item">
+        <strong>{{ animatedStats.students }}+</strong>
+        <span>Students Managed</span>
+      </div>
+
+      <div class="stat-item">
+        <strong>{{ animatedStats.features }}+</strong>
+        <span>Management Features</span>
+      </div>
+
+      <div class="stat-item">
+        <strong>{{ animatedStats.records }}%</strong>
+        <span>Organized Records</span>
+      </div>
+
+      <div class="stat-item">
+        <strong>{{ animatedStats.access }}%</strong>
+        <span>Easy Access</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= FEATURES ================= -->
+
+  <section class="features-section" id="features">
+
+    <div class="section-heading">
+
+      <span class="section-label">
+        FEATURES
+      </span>
+
+      <h2>
+        Everything You Need to
+        <span>Manage Students</span>
+      </h2>
+
+      <p>
+        Simple tools designed to make student management
+        easier and more efficient.
+      </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+
+        <div class="feature-icon blue">
+          <i class="fa-solid fa-user-plus"></i>
+        </div>
+
+        <h3>Add Students</h3>
+
+        <p>
+          Quickly create and save new student records
+          with essential information.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon purple">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </div>
+
+        <h3>Update Records</h3>
+
+        <p>
+          Easily update student information whenever
+          details change.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon red">
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
+
+        <h3>Delete Students</h3>
+
+        <p>
+          Remove unwanted student records safely with
+          confirmation.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon green">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+
+        <h3>Smart Search</h3>
+
+        <p>
+          Find student records quickly using our simple
+          search functionality.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon orange">
+          <i class="fa-solid fa-file-lines"></i>
+        </div>
+
+        <h3>Pagination</h3>
+
+        <p>
+          Browse large numbers of student records
+          page by page.
+        </p>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="feature-icon indigo">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <h3>Secure Access</h3>
+
+        <p>
+          Secure login keeps your student management
+          system protected.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= HOW IT WORKS ================= -->
+
+  <section class="how-section" id="how-it-works">
+
+    <div class="section-heading">
+
+      <span class="section-label">
+        HOW IT WORKS
+      </span>
+
+      <h2>
+        Manage Students in
+        <span>Three Simple Steps</span>
+      </h2>
+
+    </div>
+
+
+    <div class="steps-container">
+
+      <div class="step">
+
+        <div class="step-number">
+          01
+        </div>
+
+        <div class="step-icon">
+          <i class="fa-solid fa-right-to-bracket"></i>
+        </div>
+
+        <h3>Login</h3>
+
+        <p>
+          Sign in securely to access your student
+          management dashboard.
+        </p>
+
+      </div>
+
+
+      <div class="step-line"></div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          02
+        </div>
+
+        <div class="step-icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+
+        <h3>Manage Students</h3>
+
+        <p>
+          Add, update, search and delete student
+          information easily.
+        </p>
+
+      </div>
+
+
+      <div class="step-line"></div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          03
+        </div>
+
+        <div class="step-icon">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+
+        <h3>Stay Organized</h3>
+
+        <p>
+          Keep all your student records organized
+          and easy to access.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= CTA ================= -->
+
+  <section class="cta-section">
+
+    <div class="cta-content">
+
+      <div class="cta-icon">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+
+      <h2>
+        Ready to Manage Your Students?
+      </h2>
+
+      <p>
+        Start organizing your student records today
+        with StudentHub.
+      </p>
+      @if (islogin) {
+      <a routerLink="/dashboard" class="cta-btn">
+
+        Get Started
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </a>
+      }@else {
+      <a routerLink="/login" class="cta-btn">
+
+        Get Started
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </a>
+      }
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<app-footer></app-footer>

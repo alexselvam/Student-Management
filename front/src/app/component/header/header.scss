@@ -1,0 +1,685 @@
+/* =====================================================
+   HEADER
+===================================================== */
+
+.main-header {
+    width: 100%;
+    height: 82px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+/* =====================================================
+   HEADER CONTAINER
+===================================================== */
+
+.header-container {
+    width: 100%;
+    max-width: 1320px;
+    height: 100%;
+
+    margin: auto;
+    padding: 0 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    text-decoration: none;
+
+    flex-shrink: 0;
+}
+
+.logo-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+    background: #2563eb;
+
+    border-radius: 12px;
+
+    font-size: 18px;
+
+    box-shadow: 0 7px 18px rgba(37, 99, 235, 0.25);
+
+    transition: 0.25s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.30);
+}
+
+.logo-text {
+    color: #0f172a;
+
+    font-family: 'Plus Jakarta Sans', sans-serif;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    letter-spacing: -0.6px;
+}
+
+.logo-text span {
+    color: #2563eb;
+}
+
+
+/* =====================================================
+   DESKTOP NAVIGATION
+===================================================== */
+
+.nav-menu {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 38px;
+}
+
+.nav-link {
+    height: 100%;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    color: #64748b;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.25s ease;
+}
+
+.nav-link:hover {
+    color: #2563eb;
+}
+
+
+/* ACTIVE NAV */
+
+.nav-link.active {
+    color: #2563eb;
+}
+
+.nav-link.active::after {
+    content: '';
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 0;
+
+    height: 3px;
+
+    background: #2563eb;
+
+    border-radius: 5px 5px 0 0;
+}
+
+
+/* =====================================================
+   HEADER ACTIONS
+===================================================== */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.login-btn,
+.register-btn {
+    height: 44px;
+
+    padding: 0 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.25s ease;
+}
+
+
+/* LOGIN */
+
+.login-btn {
+    color: #334155;
+}
+
+.login-btn:hover,
+.login-btn.active {
+    color: #2563eb;
+}
+
+
+/* REGISTER */
+
+.register-btn {
+    color: #ffffff;
+
+    background: #2563eb;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.22);
+}
+
+.register-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.menu-btn {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #f1f5f9;
+
+    color: #0f172a;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: 0.25s ease;
+}
+
+.menu-btn:hover {
+    background: #e2e8f0;
+
+    color: #2563eb;
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+.mobile-menu {
+    display: none;
+
+    position: absolute;
+
+    top: 82px;
+
+    left: 0;
+    right: 0;
+
+    padding: 18px 20px 22px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 18px 35px rgba(15, 23, 42, 0.10);
+}
+
+
+/* SHOW */
+
+.mobile-menu.show {
+    display: block;
+
+    animation: mobileMenuOpen 0.2s ease;
+}
+
+
+@keyframes mobileMenuOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE NAV
+===================================================== */
+
+.mobile-nav {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.mobile-nav a {
+    min-height: 48px;
+
+    padding: 0 14px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    color: #475569;
+
+    text-decoration: none;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.mobile-nav a i {
+    width: 20px;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    text-align: center;
+}
+
+.mobile-nav a:hover {
+    color: #2563eb;
+
+    background: #eff6ff;
+}
+
+.mobile-nav a:hover i {
+    color: #2563eb;
+}
+
+
+/* MOBILE ACTIVE */
+
+.mobile-nav a.active {
+    color: #2563eb;
+
+    background: #eff6ff;
+}
+
+.mobile-nav a.active i {
+    color: #2563eb;
+}
+
+
+/* =====================================================
+   MOBILE ACTIONS
+===================================================== */
+
+.mobile-actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 16px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.mobile-login,
+.mobile-register {
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+/* MOBILE LOGIN */
+
+.mobile-login {
+    color: #334155;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+}
+
+.mobile-login:hover,
+.mobile-login.active {
+    color: #2563eb;
+
+    border-color: #bfdbfe;
+
+    background: #eff6ff;
+}
+
+
+/* MOBILE REGISTER */
+
+.mobile-register {
+    color: #ffffff;
+
+    background: #2563eb;
+
+    box-shadow:
+        0 7px 16px rgba(37, 99, 235, 0.20);
+}
+
+.mobile-register:hover {
+    background: #1d4ed8;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .nav-menu {
+        gap: 22px;
+    }
+
+    .header-container {
+        padding: 0 24px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+// @media (max-width: 800px) {
+
+//   .main-header {
+//     height: 72px;
+//   }
+
+//   .header-container {
+//     height: 72px;
+
+//     padding: 0 20px;
+//   }
+
+
+//   /* Hide desktop */
+
+//   .nav-menu,
+//   .header-actions {
+//     display: none;
+//   }
+
+
+//   /* Show menu */
+
+//   .menu-btn {
+//     display: flex;
+
+//     align-items: center;
+//     justify-content: center;
+//   }
+
+
+//   .mobile-menu {
+//     top: 72px;
+//   }
+
+// }
+
+
+@media (max-width: 800px) {
+
+    .main-header {
+        height: 72px;
+        background: #ffffff;
+    }
+
+    .header-container {
+        width: 100%;
+        height: 72px;
+
+        padding: 0 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        box-sizing: border-box;
+    }
+
+    /* Logo */
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        text-decoration: none;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+
+        min-width: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #2563eb;
+        color: #ffffff;
+
+        border-radius: 10px;
+
+        font-size: 16px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+
+        font-weight: 800;
+
+        white-space: nowrap;
+    }
+
+
+    /* Hide desktop navigation */
+
+    .nav-menu,
+    .header-actions {
+        display: none;
+    }
+
+
+    /* Mobile menu button */
+
+    .menu-btn {
+        width: 42px;
+        height: 42px;
+
+        min-width: 42px;
+
+        padding: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid #e2e8f0;
+
+        border-radius: 10px;
+
+        background: #f8fafc;
+
+        color: #0f172a;
+
+        font-size: 17px;
+
+        cursor: pointer;
+
+        box-sizing: border-box;
+    }
+
+    .menu-btn:hover {
+        background: #eff6ff;
+        color: #2563eb;
+        border-color: #bfdbfe;
+    }
+
+
+    /* Mobile dropdown */
+
+    .mobile-menu {
+        position: absolute;
+
+        top: 72px;
+        left: 0;
+        right: 0;
+
+        width: 100%;
+
+        padding: 14px 16px 18px;
+
+        box-sizing: border-box;
+
+        background: #ffffff;
+
+        border-bottom: 1px solid #e5e7eb;
+
+        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.10);
+
+        display: none;
+    }
+
+    .mobile-menu.show {
+        display: block;
+    }
+
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .header-container {
+        padding: 0 16px;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 10px;
+
+        font-size: 16px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .menu-btn {
+        width: 40px;
+        height: 40px;
+
+        font-size: 17px;
+    }
+
+    .mobile-menu {
+        padding: 15px 16px 20px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL DEVICES
+===================================================== */
+
+@media (max-width: 360px) {
+
+    .logo-text {
+        font-size: 17px;
+    }
+
+    .mobile-actions {
+        grid-template-columns: 1fr;
+    }
+
+}

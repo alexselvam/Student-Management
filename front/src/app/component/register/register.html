@@ -1,0 +1,377 @@
+<div class="register-page">
+
+  <!-- BACKGROUND DECORATION -->
+
+  <div class="bg-circle circle-one"></div>
+  <div class="bg-circle circle-two"></div>
+
+
+  <!-- HEADER -->
+
+  <header class="register-header">
+
+    <a routerLink="/" class="logo">
+
+      <span class="logo-icon">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </span>
+
+      <span class="logo-text">
+        Student<span>Hub</span>
+      </span>
+
+    </a>
+
+
+    <a routerLink="/" class="back-home">
+
+      <i class="fa-solid fa-arrow-left"></i>
+
+      Back to Home
+
+    </a>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="register-main">
+
+    <div class="register-wrapper">
+
+
+      <!-- LEFT SIDE -->
+
+      <section class="register-info">
+
+        <span class="info-label">
+          <i class="fa-solid fa-sparkles"></i>
+          GET STARTED
+        </span>
+
+
+        <h1>
+          Manage Students
+          <span>With Confidence.</span>
+        </h1>
+
+
+        <p>
+          Create your StudentHub account and start managing
+          student records with a simple, organized and
+          easy-to-use platform.
+        </p>
+
+
+        <div class="benefit-list">
+
+          <div class="benefit-item">
+
+            <div class="benefit-icon blue">
+              <i class="fa-solid fa-user-graduate"></i>
+            </div>
+
+            <div>
+              <strong>Easy Student Management</strong>
+
+              <span>
+                Add, update, search and manage student records.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="benefit-item">
+
+            <div class="benefit-icon green">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div>
+              <strong>Secure Account</strong>
+
+              <span>
+                Keep your account information protected.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="benefit-item">
+
+            <div class="benefit-icon purple">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div>
+              <strong>Organized Records</strong>
+
+              <span>
+                Keep all student information structured.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- SMALL STATS -->
+
+        <div class="info-stats">
+
+          <div>
+            <strong>01</strong>
+            <span>Simple Setup</span>
+          </div>
+
+          <div>
+            <strong>24/7</strong>
+            <span>Access</span>
+          </div>
+
+          <div>
+            <strong>100%</strong>
+            <span>Organized</span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- REGISTER CARD -->
+
+      <section class="register-card">
+
+        <div class="card-heading">
+
+          <div class="card-icon">
+            <i class="fa-solid fa-user-plus"></i>
+          </div>
+
+          <div>
+
+            <h2>
+              Create Account
+            </h2>
+
+            <p>
+              Enter your details to get started.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+
+
+          <!-- EMAIL -->
+
+          <div class="form-group">
+
+            <label for="email">Email Address</label>
+
+            <div class="input-wrapper" [class.error]="f['email'].touched &&f['email'].invalid">
+
+              <i class="fa-regular fa-envelope input-icon"></i>
+
+              <input id="email" type="email" formControlName="email" placeholder="Enter your email"
+                autocomplete="email">
+
+            </div>
+
+
+            @if (f['email'].touched &&f['email'].errors?.['required']) {
+
+            <small class="error-text">Email address is required.</small>
+
+            }
+
+            @if (f['email'].touched &&f['email'].errors?.['email']) {
+
+            <small class="error-text">
+              Please enter a valid email address.
+            </small>
+
+            }
+
+          </div>
+
+
+          <!-- PASSWORD -->
+
+          <div class="form-group">
+
+            <label for="password">
+              Password
+            </label>
+
+            <div class="input-wrapper" [class.error]="
+                f['password'].touched &&
+                f['password'].invalid
+              ">
+
+              <i class="fa-solid fa-lock input-icon"></i>
+
+              <input id="password" [type]="
+                  showPassword
+                    ? 'text'
+                    : 'password'
+                " formControlName="password" placeholder="Create a password" autocomplete="new-password">
+
+
+              <button type="button" class="password-toggle" (click)="togglePassword()">
+
+                <i class="fa-solid" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword">
+                </i>
+
+              </button>
+
+            </div>
+
+
+            @if (
+            f['password'].touched &&
+            f['password'].errors?.['required']
+            ) {
+
+            <small class="error-text">
+              Password is required.
+            </small>
+
+            }
+
+            @if (
+            f['password'].touched &&
+            f['password'].errors?.['minlength']
+            ) {
+
+            <small class="error-text">
+              Password must contain at least 6 characters.
+            </small>
+
+            }
+
+          </div>
+
+
+          <!-- CONFIRM PASSWORD -->
+
+          <div class="form-group">
+
+            <label for="confirmPassword">
+              Confirm Password
+            </label>
+
+            <div class="input-wrapper" [class.error]="
+                f['confirmPassword'].touched &&
+                f['confirmPassword'].invalid
+              ">
+
+              <i class="fa-solid fa-lock input-icon"></i>
+
+              <input id="confirmPassword" [type]="
+                  showConfirmPassword
+                    ? 'text'
+                    : 'password'
+                " formControlName="confirmPassword" placeholder="Confirm your password" autocomplete="new-password">
+
+
+              <button type="button" class="password-toggle" (click)="toggleConfirmPassword()">
+
+                <i class="fa-solid" [class.fa-eye]="!showConfirmPassword" [class.fa-eye-slash]="showConfirmPassword">
+                </i>
+
+              </button>
+
+            </div>
+
+
+            @if (
+            f['confirmPassword'].touched &&
+            f['confirmPassword'].errors?.['required']
+            ) {
+
+            <small class="error-text">
+              Please confirm your password.
+            </small>
+
+            }
+
+            @if (
+            f['confirmPassword'].touched &&
+            f['confirmPassword'].errors?.['passwordMismatch']
+            ) {
+
+            <small class="error-text">
+              Passwords do not match.
+            </small>
+
+            }
+
+          </div>
+
+
+
+          <!-- SUBMIT -->
+
+          <button type="submit" class="register-submit">
+
+            Create Account
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </button>
+
+
+          <!-- LOGIN -->
+
+          <div class="login-link">
+
+            Already have an account?
+
+            <a routerLink="/login">
+              Login
+            </a>
+
+          </div>
+
+        </form>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="register-footer">
+
+    <span>
+      © 2026 StudentHub. All rights reserved.
+    </span>
+
+    <span>
+      Student Management Platform
+    </span>
+
+  </footer>
+
+</div>
+
+
+<ngx-spinner bdColor="rgba(15,23,42,0.75)" size="large" color="#2563EB" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color:#eff0f3;font-size:16px;font-weight:600;">
+    Please wait...
+  </p>
+</ngx-spinner>

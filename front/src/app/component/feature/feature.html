@@ -1,0 +1,380 @@
+<app-header></app-header>
+<div class="features-page">
+
+  <!-- =========================================
+       HERO
+  ========================================== -->
+
+  <section class="features-hero">
+
+    <div class="features-hero-container">
+
+      <div class="hero-content">
+
+        <span class="hero-label">
+          <i class="fa-solid fa-sparkles"></i>
+          STUDENT MANAGEMENT FEATURES
+        </span>
+
+        <h1>
+          Everything You Need to
+          <span>Manage Students.</span>
+        </h1>
+
+        <p>
+          StudentHub gives you simple and powerful tools to
+          create, manage, search and organize student records
+          from one place.
+        </p>
+
+        @if (islogin) {
+        <div class="hero-buttons">
+
+          <a routerLink="/dashboard" class="primary-btn">
+
+            Get Started
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </a>
+
+        </div>
+        }
+        @else {
+        <div class="hero-buttons">
+
+          <a routerLink="/register" class="primary-btn">
+
+            Get Started
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </a>
+
+          <a routerLink="/login" class="secondary-btn">
+
+            Login
+
+          </a>
+
+        </div>
+        }
+
+      </div>
+
+
+      <!-- Feature Preview -->
+
+      <div class="feature-preview">
+
+        <div class="preview-top">
+
+          <div>
+            <span>Student Management</span>
+            <h3>Features</h3>
+          </div>
+
+          <div class="preview-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+
+        </div>
+
+
+        <div class="preview-feature-list">
+
+          <div class="preview-feature">
+            <div class="preview-feature-icon blue">
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+
+            <div>
+              <strong>Add Student</strong>
+              <span>Create student records</span>
+            </div>
+
+            <i class="fa-solid fa-check check-icon"></i>
+          </div>
+
+
+          <div class="preview-feature">
+            <div class="preview-feature-icon purple">
+              <i class="fa-solid fa-pen"></i>
+            </div>
+
+            <div>
+              <strong>Update Records</strong>
+              <span>Edit student information</span>
+            </div>
+
+            <i class="fa-solid fa-check check-icon"></i>
+          </div>
+
+
+          <div class="preview-feature">
+            <div class="preview-feature-icon green">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div>
+              <strong>Smart Search</strong>
+              <span>Find students quickly</span>
+            </div>
+
+            <i class="fa-solid fa-check check-icon"></i>
+          </div>
+
+
+          <div class="preview-feature">
+            <div class="preview-feature-icon orange">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div>
+              <strong>Pagination</strong>
+              <span>Browse records easily</span>
+            </div>
+
+            <i class="fa-solid fa-check check-icon"></i>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       FEATURES
+  ========================================== -->
+
+  <section class="all-features">
+
+    <div class="section-heading">
+
+      <span class="section-label">
+        POWERFUL FEATURES
+      </span>
+
+      <h2>
+        Simple Tools.
+        <span>Powerful Management.</span>
+      </h2>
+
+      <p>
+        Everything you need to manage student records
+        efficiently and keep your data organized.
+      </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+      @for (feature of features; track feature.title) {
+
+      <div class="feature-card">
+
+        <div class="feature-icon" [class]="feature.class">
+
+          <i class="fa-solid" [class]="feature.icon">
+          </i>
+
+        </div>
+
+        <h3>
+          {{ feature.title }}
+        </h3>
+
+        <p>
+          {{ feature.description }}
+        </p>
+
+        <a routerLink="/register">
+          Learn more
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+      </div>
+
+      }
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       MANAGEMENT FLOW
+  ========================================== -->
+
+  <section class="management-section">
+
+    <div class="management-container">
+
+      <div class="management-content">
+
+        <span class="section-label">
+          SIMPLE MANAGEMENT
+        </span>
+
+        <h2>
+          Manage every student
+          <span>with confidence.</span>
+        </h2>
+
+        <p>
+          From adding a new student to updating or removing
+          records, StudentHub keeps the entire process simple
+          and organized.
+        </p>
+
+
+        <div class="management-points">
+
+          <div class="management-point">
+
+            <div class="point-icon">
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <div>
+              <strong>Centralized Records</strong>
+              <span>
+                Keep all student information in one place.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="management-point">
+
+            <div class="point-icon">
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <div>
+              <strong>Fast Search</strong>
+              <span>
+                Find student records without browsing manually.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="management-point">
+
+            <div class="point-icon">
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <div>
+              <strong>Easy Updates</strong>
+              <span>
+                Keep student information accurate and updated.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="management-card">
+
+        <div class="management-card-header">
+
+          <div>
+            <span>Student Records</span>
+            <strong>120 Students</strong>
+          </div>
+
+          <div class="record-icon">
+            <i class="fa-solid fa-users"></i>
+          </div>
+
+        </div>
+
+
+        <div class="record-progress">
+
+          <div class="progress-header">
+            <span>Records Organized</span>
+            <strong>96%</strong>
+          </div>
+
+          <div class="progress-bar">
+            <span></span>
+          </div>
+
+        </div>
+
+
+        <div class="record-stats">
+
+          <div>
+            <strong>108</strong>
+            <span>Active</span>
+          </div>
+
+          <div>
+            <strong>12</strong>
+            <span>Recently Added</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       CTA
+  ========================================== -->
+
+  <section class="feature-cta">
+
+    <div class="cta-content">
+
+      <div class="cta-icon">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+
+      <h2>
+        Ready to Manage Your Students?
+      </h2>
+
+      <p>
+        Start organizing your student records with StudentHub.
+      </p>
+
+      @if (islogin) {
+      <a routerLink="/dashboard" class="cta-btn">
+
+        Get Started
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </a>
+      }@else {
+      <a routerLink="/login" class="cta-btn">
+
+        Get Started
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </a>
+      }
+
+    </div>
+
+  </section>
+
+</div>
+<app-footer></app-footer>
