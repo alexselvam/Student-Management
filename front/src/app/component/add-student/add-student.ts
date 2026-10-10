@@ -585,7 +585,9 @@ export class AddStudent {
               : 'Student added successfully.'
           )
         );
-
+        this.router.navigate(
+          ['/students']
+        );
 
         // ============================
         // EDIT
