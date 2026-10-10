@@ -15,10 +15,10 @@ export class Home {
   islogin: any = localStorage.getItem('student_TOKEN') ?? sessionStorage.getItem('student_TOKEN') ?? null;
 
   animatedStats = {
-    students: 0,
-    features: 0,
-    records: 0,
-    access: 0
+    students: 100,
+    features: 5,
+    records: 99,
+    access: 100
   };
 
   targetStats = {
