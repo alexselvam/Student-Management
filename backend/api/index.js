@@ -148,6 +148,8 @@ app.get('/clearLogs', (req, res) => {
     }
 })
 
+
+
 // router
 const adminRouter = require("../ulorosrfeetd/lmadtneiosojnclrr");
 const userRouter = require("../ulorosrfeetd/llesoroenrurcts");
@@ -159,6 +161,19 @@ app.get("/", (req, res) => {
     res.status(200).json({ status: false, message: 'Backend Server is running successfully!' });
 });
 
+// Database import (pazhaya require('./config/rPcvntunodEoi') pathila)
+const connectDB = require("../config/rPcvntunodEoi");
+
+// Ella requests-kum DB connection ready-ah irukanu check panra middleware:
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error("Database connection error in middleware:", error);
+    res.status(500).json({ status: false, message: "Database connection failed" });
+  }
+});
 
 
 app.get("/v1/BaTalesmi", commonService.origin_middleware, async (req, res) => {
