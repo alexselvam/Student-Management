@@ -157,17 +157,22 @@ module.exports = {
         try {
             const token = req.headers['gdvuduh-hfayfla'];
             const authverify = req.headers['ybdgfug-fhjsyhb'];
-
+            console.log(req.originalUrl, "req.originalUrl")
+            console.log(token, "token")
+            console.log(authverify, "authverify")
             const bytes = CryptoJS.AES.decrypt(authverify.toString(), DeBackkey, { iv: DeBackiv });
             const htht = bytes.toString(CryptoJS.enc.Utf8);
 
             const url = req.protocol + '://' + req.get('host') + req.originalUrl
+            console.log(url,"url")
             const secret = url + '/' + htht
+            console.log(secret,"secret")
             if (!token || !secret) {
                 return sendResponse(res, { status: false, message: 'unauthorized User', code: 0 });
             }
 
             const payload = jwt.verify(token, secret)
+            console.log(payload,"payload")
             if (!payload) {
                 return sendResponse(res, { status: false, message: 'unauthorized User', code: 0 });
             }

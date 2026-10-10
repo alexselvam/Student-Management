@@ -3,13 +3,7 @@ module.exports = [
     "http://localhost:4200/",
     "http://localhost:4201",
     "http://localhost:4201/",
-    "http://172.16.16.176:4200/",
-    "http://172.16.16.176:4200",
-    "http://172.16.16.176:4201/",
-    "http://172.16.16.176:4201",
-    "http://172.16.16.161:4200/",
-    "http://172.16.16.161:4200",
-    "http://172.16.16.161:4201/",
-    "http://172.16.16.161:4201",
+    "https://student-hub-one-tawny.vercel.app/",
+    "https://student-hub-one-tawny.vercel.app"
 ]
 // origin domains
