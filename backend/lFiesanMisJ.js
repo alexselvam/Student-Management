@@ -15,20 +15,8 @@ const app = express();
 const rateLimit = require("express-rate-limit");
 const { xss } = require('express-xss-sanitizer');
 
-//server start
-// const options = {
-//     key: fs.readFileSync('./alylasssekb/osksytrsrlcpecetj.key'),
-//     cert: fs.readFileSync('./alylasssekb/eptycctkrjlsresos.crt')
-// };
 
-// const server = process.env.node_env == 'rPcvntunodEoi' ? http.createServer(app) : https.createServer(options, app);
 
-// //server connecting
-// server.listen(port, () =>
-//     console.log(`Express server running on port ${port}`)
-// );
-
-// Local-ல் மட்டும் listen செய்ய (Vercel-ல் listen தேவைப்படாது):
 if (!process.env.VERCEL) {
     const port = process.env.port || 3000;
     app.listen(port, () =>
